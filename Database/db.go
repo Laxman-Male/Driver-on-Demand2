@@ -23,7 +23,9 @@ func Init() error {
 	dbPort := os.Getenv("DB_PORT")
 	dbName := os.Getenv("DB_NAME")
 
-	dsn := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s", dbUser, dbPass, dbHost, dbPort, dbName)
+	// dsn := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s", dbUser, dbPass, dbHost, dbPort, dbName)
+	// Change this line:
+	dsn := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?tls=skip-verify", dbUser, dbPass, dbHost, dbPort, dbName)
 
 	var err error
 	DB, err = sqlx.Connect("mysql", dsn)
